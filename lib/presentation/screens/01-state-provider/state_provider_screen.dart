@@ -20,7 +20,6 @@ class StateProviderScreen extends ConsumerWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.refresh_rounded),
         onPressed: () => ref.invalidate(randomNameProvider)
-        
       ),
     );
   }
