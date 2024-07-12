@@ -8,18 +8,37 @@ class PokemonScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
 
-    final pokemonAsync = ref.watch(pokemoNameProvider);
-
-    
+    final pokemonId = ref.watch(pokemonIdProvider);
+    final pokemonAsync = ref.watch(pokemoNameProvider(pokemonId));
+        
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Future Provider')),
+        title: Text('Pokemon: $pokemonId')),
       body:  Center(
         child: pokemonAsync.when(
           data: (value) => Text(value),
           error: (error, stackTrace) => Text("Error: $error"), 
-          loading: () => const CircularProgressIndicator()))
-       
+          loading: () => const CircularProgressIndicator())),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            heroTag: '1',
+            onPressed: (){
+              ref.read(pokemonIdProvider.notifier).update((state) => state + 1);
+            },
+            child: const Icon(Icons.plus_one)
+          ),
+          const SizedBox(height: 10),
+          FloatingActionButton(
+            heroTag: '2',
+            onPressed: (){
+              ref.read(pokemonIdProvider.notifier).update((state) => state - 1);
+            },
+            child: const Icon(Icons.exposure_minus_1)
+          ) 
+        ],
+      ),
     );
   }
 }
