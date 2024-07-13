@@ -39,6 +39,12 @@ class _HomeScreenView extends StatelessWidget {
           subtitle: 'Un simple stream', 
           location: '/stream-provider'
         ),
+
+        _CustomListTile(
+          title: 'State Notifier Provider', 
+          subtitle: 'Un provider con estado personalizado', 
+          location: '/state-notifier-provider'
+        ),        
       ],
     );
   }
