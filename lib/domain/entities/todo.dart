@@ -10,7 +10,7 @@ class Todo {
   });
 
   bool get done {
-    return completedAt == null;
+    return completedAt != null;
   }
 
   copyWith({
