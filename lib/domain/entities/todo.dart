@@ -13,13 +13,13 @@ class Todo {
     return completedAt != null;
   }
 
-  copyWith({
+ Todo copyWith({
     String? id,
     String? descrition,
     DateTime? completedAt,
   }) => Todo(
     id: id ?? this.id, 
     descrition: descrition ?? this.descrition, 
-    completedAt: completedAt ?? this.completedAt
+    completedAt: completedAt
   );
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:river_app/presentation/providers/todos_provider.dart';
 
-
 class TodosScreen extends ConsumerWidget {
   const TodosScreen({super.key});
 
@@ -16,7 +15,7 @@ class TodosScreen extends ConsumerWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon( Icons.add ),
         onPressed: () {
-          
+          ref.read(todosProvider.notifier).addTodo();
         },
       ),
     );
@@ -39,8 +38,10 @@ class _TodosView extends ConsumerWidget {
         
         return SwitchListTile(
           title: Text( todo.descrition ),
+          subtitle: Text( todo.completedAt.toString() ),
           value: todo.done, // True o False 
-          onChanged: ( value ) {
+          onChanged: ( _ ) {
+          ref.read(todosProvider.notifier).toggleTodo(todo.id);
             
           }
         );

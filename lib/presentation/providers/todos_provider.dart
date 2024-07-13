@@ -16,4 +16,25 @@ class TodosNotifier extends StateNotifier <List<Todo>>{
     Todo(id: _uuid.v4(), descrition: RandomGenerator.getRandomName(), completedAt: DateTime.now()),
     Todo(id: _uuid.v4(), descrition: RandomGenerator.getRandomName(), completedAt: null),
   ]);
+
+  void addTodo(){
+    state = [
+      ...state,
+      Todo(id: _uuid.v4(), descrition: RandomGenerator.getRandomName(), completedAt: null),
+    ];
+  }
+
+  void toggleTodo(String id){
+
+    state = state.map((todo) {
+
+      if (todo.id != id) return todo;
+
+      if (todo.done) return todo.copyWith(completedAt: null);
+
+      return todo.copyWith(completedAt: DateTime.now());
+
+    }).toList();
+    
+  }
 }
